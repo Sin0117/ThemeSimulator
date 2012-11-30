@@ -21,6 +21,9 @@ package com.qihoo.themefactory.sjx.utils {
 			_data = p['data'];
 			_metadata = p['metadata'];
 			_view = p['view'];
+				
+			if (p['proxy'])
+				Utils.proxy = p['proxy'];
 			if (p['appCol'])
 				Utils._col = p['appCol'];
 			if (p['appRow'])

@@ -1,5 +1,6 @@
 package com.qihoo.themefactory.sjx.ctrl {
 	import com.qihoo.themefactory.sjx.modes.Image;
+	import com.qihoo.themefactory.sjx.utils.Utils;
 	
 	import flash.display.BitmapData;
 	import flash.display.Loader;
@@ -29,10 +30,10 @@ package com.qihoo.themefactory.sjx.ctrl {
 				callback(_queue[src], time);
 			}
 			else {
-				var loader: Loader = new Loader();
+				var loader: Loader = new Loader(), tempUrl: String = _cache(src);
 				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadComplete);
 				loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loadError);
-				loader.load(new URLRequest(_cache(src)));
+				loader.load(new URLRequest(tempUrl));
 				_queue[src] = loader;
 			}
 			
@@ -58,7 +59,10 @@ package com.qihoo.themefactory.sjx.ctrl {
 						arr[1] = arr[1].substring(end + 1);
 					url = arr.join('');
 				}
-				return url + (url.indexOf('?') != -1 ? '&QIHOO_D_CACHE=' : '?QIHOO_D_CACHE=') + d;
+				url += (url.indexOf('?') != -1 ? '&QIHOO_D_CACHE=' : '?QIHOO_D_CACHE=') + d;
+				if (Utils.proxy)
+					return ExternalInterface.call(Utils.proxy, url);
+				return url;
 			}
 		}
 	}

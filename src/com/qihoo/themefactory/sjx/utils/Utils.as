@@ -31,6 +31,8 @@ package com.qihoo.themefactory.sjx.utils {
 		public static var _dockbarSize: int = 96;
 		// 桌面图标区域(图标会在此区域中居中).
 		public static var _size: int = 120;
+		// 获取图片内容的代理函数
+		public static var proxy: String;
 		// 是否支持预览对页面派发事件.
 		public static var isFire: Boolean = false;
 		
@@ -61,6 +63,8 @@ package com.qihoo.themefactory.sjx.utils {
 		public static function get _col(): int {
 			return col;
 		}
+		
+		
 		
 		/** 加载授权文件. */
 		public static function loadPolicy(arr: Array, callback: Function): void {
